@@ -1,0 +1,65 @@
+{% extends 'core/base.html'%}
+
+{% load static %}
+
+{% block contenido %}
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <h2 class="text-center mt-0">Seleccione su Usuario </h2>
+    <hr class="divider my-4" />
+    <div class="row">
+        <div class="col-lg-3 col-md-6 text-center">
+            <div class="mt-5">
+                <i class="fas fa-4x fa-gem text-primary mb-4">
+                    <img class="img-fluid" src="{% static '../../static/core/img/productor.jpg' %}" alt="" width="300" height="200" >
+                </i>
+                <br/><br/><br>
+                <h2 class="h4 mb-2">Productor</h2>
+                <p class="text-muted mb-0">El formar parte de la empresa como Productor conllevara en que usted pueda vender sus productos en nuestro sistema el cual les ayudara a expandir aún más su emprendimiento realizado exportaciones a cualquier destino del mundo siendo nosotros su intermediario.</p>
+                <br>
+                <a href="{% url 'reg_prod' %}"><input type="reset" value="Registrar" class="btn btn-info"></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 text-center">
+            <div class="mt-5">
+                <i class="fas fa-4x fa-laptop-code text-primary mb-4">
+                    <img class="img-fluid" src="{% static '../../static/core/img/Transportistas.jpg' %}" alt="" width="450" height="200" >
+                </i>
+                <br/><br/><br>
+                <h2 class="h4 mb-2">Transportista</h2>
+                <p class="text-muted mb-0">El formar parte de la empresa como Transportista conllevara que firme un compromiso como funcionario externo el cual está encargada de realiza los despachos que más sea adecuado para tu automóvil especializado para ese despacho requerido. </p>
+                <br>
+                <a href="{% url 'reg_trans' %}"><input type="reset" value="Registrar" class="btn btn-info"></a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 text-center">
+            <div class="mt-5">
+                <i class="fas fa-4x fa-globe text-primary mb-4">
+                    <img class="img-fluid" src="{% static '../../static/core/img/cliente-local.jpg' %}" alt="" width="450" height="200" >
+                </i>
+                <br/><br/><br>
+                <h2 class="h4 mb-2">Cliente Local</h2>
+                <p class="text-muted mb-0">El formar parte de la empresa como Cliente Local se le dispondra de un catalogo de todos los productos a dispocision de los mismos productores de la zona más favorables de nuestro extenso país.</p>
+                <br>
+                <a href="{% url 'reg_clienteinterno' %}"><input type="reset" value="Registrar" class="btn btn-info"></a>            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 text-center">
+            <div class="mt-5">
+                <i class="fas fa-4x fa-heart text-primary mb-4">
+                    <img class="img-fluid" src="{% static '../../static/core/img/cliente-extranjero.jpg' %}" alt="" width="450" height="200" >
+                </i>
+                <br/><br/><br>
+                <h2 class="h4 mb-2">Cliente Extranjero</h2>
+                <p class="text-muted mb-0">El formar parte de la empresa como Cliente Extranjero conllevara realizar un contrato para cada uno de los pedidos el cual quiera realizar con nuestra empresa para asegurar lo más posible nuestro compromiso con usted.</p>
+                <br>               
+                <a href="{% url 'reg_clienteexterno' %}"><input type="reset" value="Registrar" class="btn btn-info"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

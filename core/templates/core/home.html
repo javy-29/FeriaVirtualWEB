@@ -1,0 +1,149 @@
+{% extends 'core/base.html'%}
+
+{% load static %}
+
+{% block contenido %}
+
+<header class="main-header ">
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">Maipo Grande</h1>
+            <div class="entry-title-divider">
+                <span></span><span></span><span></span>
+            </div>
+            <h2 class="page-description">Mas que calidad un sabor distinto.</h2>
+        </div>
+    </div>
+    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
+</header>
+
+<div class="container">
+    <h2 class="text-center mt-0">A su servicio</h2>
+    <hr class="divider my-4" />
+    <div class="row">
+        <div class="col-lg-3 col-md-6 text-center">
+            <div class="mt-5">
+                <i class="fas fa-4x fa-gem text-primary mb-4">
+                    <img class="img-fluid" src="{% static '../../static/core/img/imagenrobada.png' %}" alt="" width="300" height="200" >
+                </i>
+                <br/><br/>
+                <h3 class="h4 mb-2">Productos Estudiados</h3>
+                <p class="text-muted mb-0">Productos que fueron estudiados de ante mano por expertos calificados para llevarlo al mercado virtual. </p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 text-center">
+            <div class="mt-5">
+                <i class="fas fa-4x fa-laptop-code text-primary mb-4">
+                    <img class="img-fluid" src="{% static '../../static/core/img/md1.png' %}" alt="" width="450" height="200" >
+                </i>
+                <br/><br/>
+                <h3 class="h4 mb-2">Mercado Digital</h3>
+                <p class="text-muted mb-0">Para mayor comodidad maipo grande ha implementado este sistema web para efectuar compras de productos frutales por internet
+                    desde una mayor comodidad.
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 text-center">
+            <div class="mt-5">
+                <i class="fas fa-4x fa-globe text-primary mb-4">
+                    <img class="img-fluid" src="{% static '../../static/core/img/meh1.png' %}" alt="" width="450" height="200" >
+                </i>
+                <br/><br/>
+                <h3 class="h4 mb-2">Expandelo</h3>
+                <p class="text-muted mb-0">Identifique prospectos para su negocio en más de 190 países de todo el mundo. En Agro Crece recopilamos los contactos obtenidos 
+                    directamente por la Aduana. Puede filtrar la información según sus necesidades e identificar nuevos mercados.
+                </p>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 text-center">
+            <div class="mt-5">
+                <i class="fas fa-4x fa-heart text-primary mb-4">
+                    <img class="img-fluid" src="{% static '../../static/core/img/meh2.png' %}" alt="" width="450" height="200" >
+                </i>
+                <br/><br/>
+                <h3 class="h4 mb-2">Conéctelo</h3>
+                <p class="text-muted mb-0">Conéctese con importadores y exportadores reales de sus productos. Todas nuestras bases de datos e informes están segmentados por producto y código HS. 
+                    Significa que obtendrá prospectos verificados específicamente para el producto que está buscando.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br/>
+<div id="Productos">
+    <h2 class="text-center mt-0">Catalogo de Frutas</h2>
+    <hr class="divider my-4" />
+    <h3 class="text-muted text-center mt-0"> Todo lo que puedas encontrar en una Feria pero en formato digital </h3>
+    <br/>
+    <div class="container-fluid p-0">
+        <div class="row no-gutters">
+            <!--Pepino-->
+            <div class="col-lg-2 col-sm-6">
+                <a class="Productos-box" href="{% static '../../static/core/img/gallery-img-01.jpg' %}" width="300" height="200">
+                    <img class="img-fluid" src="{% static '../../static/core/img/gallery-img-01.jpg' %}" alt="" width="300" height="200"/>
+                    <div class="Productos-box-caption">
+                        <div class="project-category text-white-50">Categoria</div>
+                        <div class="project-name">Pepino</div>
+                    </div>
+                </a>
+            </div>
+            <!--Tomate-->
+            <div class="col-lg-2 col-sm-6">
+                <a class="Productos-box" href="{% static '../../static/core/img/gallery-img-02.jpg' %}" width="300" height="200">
+                    <img class="img-fluid" src="{% static '../../static/core/img/gallery-img-02.jpg' %}" alt="" width="300" height="200"/>
+                    <div class="Productos-box-caption">
+                        <div class="project-category text-white-50">Categoria</div>
+                        <div class="project-name">Tomate</div>
+                    </div>
+                </a>
+            </div>
+            <!--Pimenton-->
+            <div class="col-lg-2 col-sm-6">
+                <a class="Productos-box" href="{% static '../../static/core/img/gallery-img-03.jpg' %}" width="300" height="200">
+                    <img class="img-fluid" src="{% static '../../static/core/img/gallery-img-03.jpg' %}" alt="" width="300" height="200" />
+                    <div class="Productos-box-caption">
+                        <div class="project-category text-white-50">Categoria</div>
+                        <div class="project-name">Pimenton</div>
+                    </div>
+                </a>
+            </div>
+            <!-- Legumbres -->
+            <div class="col-lg-2 col-sm-6">
+                <a class="Productos-box" href="{% static '../../static/core/img/gallery-img-04.jpg' %}" width="300" height="200">
+                    <img class="img-fluid" src="{% static '../../static/core/img/gallery-img-04.jpg' %}" alt="" width="300" height="200"/>
+                    <div class="Productos-box-caption">
+                        <div class="project-category text-white-50">Categoria</div>
+                        <div class="project-name">Legumbres</div>
+                    </div>
+                </a>
+            </div>
+            <!-- Lentejas -->
+            <div class="col-lg-2 col-sm-6">
+                <a class="Productos-box" href="{% static '../../static/core/img/gallery-img-05.jpg' %}" width="300" height="200">
+                    <img class="img-fluid" src="{% static '../../static/core/img/gallery-img-05.jpg' %}" alt="" width="300" height="200"/>
+                    <div class="Productos-box-caption">
+                        <div class="project-category text-white-50">Categoria</div>
+                        <div class="project-name">Lentejas</div>
+                    </div>
+                </a>
+            </div>
+            <!-- Lentejas Oscuras -->
+            <div class="col-lg-2 col-sm-6">
+                <a class="Productos-box" href="{% static '../../static/core/img/gallery-img-06.jpg' %}" width="300" height="200">
+                    <img class="img-fluid" src="{% static '../../static/core/img/gallery-img-06.jpg' %}" alt="" width="300" height="200"/>
+                    <div class="Productos-box-caption p-3">
+                        <div class="project-category text-white-50">Categoria</div>
+                        <div class="project-name">Lentejas Oscuras</div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

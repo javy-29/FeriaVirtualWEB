@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends 'core/base.html'%}
+
+{% load static %}
+
+{% block contenido %}
+
+<br><br><br><br>
+<body>
+    <div class="container">
+        <h2>Registrar Productos</h2>
+        {% load crispy_forms_tags %}
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            {{ form | crispy }}
+
+            <input type="reset" value="Limpiar" class="btn btn-info">
+            <input type="submit" class="btn btn-primary" value="Registrar">
+        </form>
+
+    </div>
+    <div>
+    </div>
+
+</body>
+
+
+
+{% endblock %}

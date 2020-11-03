@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% extends 'core/base.html'%}
+{% load static %}
+{% block contenido %}
+
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!--Ver como llamar una bbdd desde python-->
+    <h2> Listado de Proceso de Venta </h2>
+    <a href="{% url 'registrar_proceso_venta' %}"><input type="reset" value="Agregar Producto" class="btn btn-info"></a>
+    <table class="table">
+            <tr>
+                    <td>ID_PROCESO</td>
+                    <td>INFORMACION_VENTA</td>
+                    <td>CONTRATO_VENTA_ID_CONT</td>
+                    <td></td>
+                    <td></td>
+                    <!--<td>PRODUCTOR_RUT_PRODUC</td> -->
+            </tr>
+            {% for pv in procesoventa %}
+            <tr>
+                    <td>{{ pv.id_proceso }}</td>
+                    <td>{{ pv.informacion_venta }}</td>
+                    <td>{{ pv.contrato_venta_id_cont }}</td>
+                    <td>
+                        <a href="#"><input type="reset" value="Modificar" class="btn btn-info"></a>
+                        <a href="{% url 'eliminar_proceso_venta' pv.id_proceso %}"><input type="reset" value="Eliminar" class="btn btn-info"></a>
+                    </td>
+                    
+            </tr>
+                    
+            {% endfor %}
+    </table>
+</div>
+
+
+
+{% endblock %}

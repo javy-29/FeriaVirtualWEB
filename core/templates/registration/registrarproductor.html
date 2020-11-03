@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Registro Productor</title>
+</head>
+
+<body>
+    <div class="container">
+        <h2> Registrar Productor </h2>
+        {% load crispy_forms_tags %}
+        <form action="" method="POST">
+            {% csrf_token %}
+
+            {{ form | crispy }}
+
+            <input type="reset" value="Limpiar" class="btn btn-info">
+            <input type="submit" value="Siguiente" class="btn btn-success">
+        </form>
+
+    </div>
+     
+</body>
+
+</html>

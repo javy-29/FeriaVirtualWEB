@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% extends 'core/base.html'%}
+
+{% load static %}
+
+{% block contenido %}
+
+<div class="container">
+        <br><br><br><br><br>
+        <h2>  Registrar Productor</h2>
+        {% load crispy_forms_tags %}
+        <form action="" method="POST">
+                {% csrf_token %}
+
+                <table>
+                        {{ form | crispy }}
+                </table>
+
+                <input type="submit" class="btn btn-primary" value="Enviar Solicitud">
+                <input type="reset" class="btn btn-secondary" value="Limpiar">
+        </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'core/base.html'%}
+
+{% load static %}
+
+{% block contenido %}
+
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="span7">
+        <h1>Mis Datos</h1>
+        <div class="form-sp-component">
+            <div class="form-sp-label">Nombre</div>
+            <div class="form-sp-field">{{ pro.1 }}</div>
+        </div>
+
+        <div class="form-sp-component">
+            <div class="form-sp-label">RUT</div>
+            <div class="form-sp-field">{{ pro.0 }}</div>
+        </div>
+
+        <div class="form-sp-component">
+            <div class="form-sp-label">Fecha de Nacimiento</div>
+            <div class="form-sp-field">{{ }}</div>
+        </div>
+
+        <div class="form-sp-component">
+            <div class="form-sp-label">E-Mail</div>
+            <div class="form-sp-field">{{ }}</div>
+        </div>
+
+        <div class="form-sp-component">
+            <div class="form-sp-label">Teléfono</div>
+            <div class="form-sp-field">{{ }}</div>
+        </div>
+
+        <div class="form-sp-component">
+            <div class="form-sp-label">Celular</div>
+            <div class="form-sp-field">{{ }}</div>
+        </div>
+
+        <div class="form-sp-component">
+            <div class="form-sp-label">Dirección</div>
+            <div class="form-sp-field">{{ }}</div>
+        </div>
+
+        <div class="form-sp-component">
+            <div class="form-sp-label">Comuna</div>
+            <div class="form-sp-field">{{ }}</div>
+        </div>
+
+
+        <div class="form-sp-component">
+            <div class="form-sp-action-label">
+                &nbsp;
+            </div>
+            <div class="form-sp-field">
+                <a href="/customers/edit" class="btn btn-primary">Modificar datos de cliente</a> </div>
+        </div>
+    </div>
+    
+
+</div>
+
+{% endblock %}

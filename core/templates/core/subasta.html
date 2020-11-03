@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends 'core/base.html'%}
+{% load static %}
+{% block contenido %}
+
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!--Ver como llamar una bbdd desde python-->
+    <h2> Listado de Subasta </h2>
+    <a href="{% url 'home' %}"><input type="reset" value="Ingresar Oferta" class="btn btn-info"></a>
+
+    <table class="table">
+            <tr>
+                    <td>ID SUBASTA</td>
+                    <td>REQUISITO SUBASTA</td>
+                    <td>ID DE PEDIDO VENTA</td>
+                    <td>ID OFERTA TRANSPORTISTA</td>
+                    <td></td>
+                    <td></td>
+                    <!--<td>PRODUCTOR_RUT_PRODUC</td> -->
+            </tr>
+            {% for ss in subasta %}
+            <tr>
+                    <td>{{ ss.id_subasta }}</td>
+                    <td>{{ ss.requisito_subasta }}</td>
+                    <td>{{ ss.pedido_venta_cod_pedido }}</td>
+                    <td>{{ ss.oferta_transp_cod_ot }}</td>
+                    <td>
+                        <a href="{% url 'modificar_subasta' ss.id_subasta %}"><input type="reset" value="Modificar" class="btn btn-info"></a>
+                        <a href="{% url 'eliminar_subasta' ss.id_subasta %}"><input type="reset" value="Eliminar" class="btn btn-info"></a>
+                    </td>
+                    
+            </tr>
+                    
+            {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

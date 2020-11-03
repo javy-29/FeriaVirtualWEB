@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends 'core/base.html'%}
+{% load static %}
+{% block contenido %}
+
+<div class="container">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!--Ver como llamar una bbdd desde python-->
+    <h2> Listado de Solicitud de Venta </h2>
+    <a href="{% url 'registrarsolicitud' %}"><input type="reset" value="Registrar solicitud" class="btn btn-info"></a>
+
+    <table class="table">
+            <tr>
+                    <td>ID_SOLI</td>
+                    <td>NUMERO_SOLI</td>
+                    <td>DIRECCION_ENTREGA</td>
+                    <td>CLIENTE_EXTERNO_RUT_CLIENTE</td>
+                    <!--<td>PRODUCTOR_RUT_PRODUC</td> -->
+            </tr>
+            {% for s in solicitud %}
+            <tr>
+                    <td>{{ s.id_soli }}</td>
+                    <td>{{ s.numero_soli }}</td>
+                    <td>{{ s.direccion_entrega }}</td>
+                    <td>{{ s.cliente_externo_rut_cliente }}</td>
+                    <td>
+
+                        <a href="#"><input type="reset" value="Modificar" class="btn btn-info"></a>
+                        <a href="#"><input type="reset" value="Eliminar" class="btn btn-info"></a>
+                    </td>
+                    <!--<td>{{ p.5 }}</td> -->
+            </tr>
+            {% endfor %}
+    </table>
+    
+</div>
+
+
+{% endblock %}
