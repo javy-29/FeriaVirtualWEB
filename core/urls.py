@@ -13,7 +13,8 @@ urlpatterns = [
     ##-----------------pagina productor---------------------------------
     path('registrarproductor', registrar_productor, name = "reg_prod"),
     path('formularioproduc', registrar_prod, name="reg_productor"),
-    path('perfilproductor',perfilproductor , name="perfil_productor"),
+    path('perfil-productor',perfil_productor , name="perfil_productor"),
+    path('modificar-productor/<id>/',modificar_productor , name="modificarproductor"),
     ##----------------página productos-----------------------------------
     path('productos', productos, name="productos"),  #Muestra el  listar de los productos
     path('productosclienteex', productoex, name="productosclienteex"),
@@ -23,23 +24,26 @@ urlpatterns = [
     ##-----------------pagina transportista---------------------------------
     path('registrartransportista',registrar_transportista, name="reg_trans"),
     path('formulariotrans', registrar_trans, name="reg_transportista"),
-
+    path('perfiltransportista',perfil_transportista , name="perfil_transportista"),
+    path('modificar-transportista/<id>/',modificar_transportista , name="modificartransportista"),
     ##-----------------pagina cliente interno---------------------------------
     path('registrarclienteinterno',registrar_cliente_interno, name="reg_clienteinterno"),
     path('formularioclienteinterno', registrar_cliente_in, name="reg_clientein"),
-
+    path('perfilclienteinterno',perfil_cliente_interno , name="perfil_cliente_interno"),
+    path('modificar-cliente-interno/<id>/',modificar_cliente_interno , name="modificarclienteinterno"),
     ##-----------------pagina cliente externo---------------------------------
     path('registrarclienteexterno', registrar_cliente_externo, name = "reg_clienteexterno"), 
     path('formularioclientexterno', registrar_cliente_ex, name="reg_clienteex"),
-   
-       ##-----------------pagina de solicitud venta-------------------------------
+    path('perfilclienteexterno',perfil_cliente_externo , name="perfil_cliente_externo"),
+    path('modificar-cliente-externo/<id>/',modificar_cliente_externo , name="modificarclienteexterno"),
+    ##-----------------pagina de solicitud venta-------------------------------
     path('listado_solicitud_venta', listado_solicitud_venta, name = "listado_solicitud_venta"),    
     path('registrarsolicitud', registrar_solicitud, name = "registrarsolicitud"),
     ##-----------------pagina de subasta---------------------------------------
     path('modificar_subasta/<id>/', modificar_subasta, name= "modificar_subasta"),
     path('eliminar_subasta/<id>/', eliminar_subasta, name="eliminar_subasta"),
     path('listado_subasta', listado_subasta, name= "listado_subasta"),
-        path('registrar_subasta', registrar_subasta, name="registrar_subasta"),
+    path('registrar_subasta', registrar_subasta, name="registrar_subasta"),
 
 
     ##-----------------pagina de proceso de venta-------------------------------

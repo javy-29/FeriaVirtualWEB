@@ -20,27 +20,31 @@
         <ul id="menu">
             <li class="nav-home nav-current" role="presentation"><a href="{% url 'home' %}">Inicio</a></li>
             <li class="nav-home nav-current" role="presentation"><a href="{% url 'show_tienda' %}">Tienda</a></li>
-
+            
+            {% if perms.core.add_producto %}<!-- Productor-->
+            <li class="nav-about-us" role="presentation"><a href="{% url 'productos' %}">Productos</a></li>
+            <li class="nav-about-us" role="presentation"><a href="{% url 'listado_proceso_venta' %}">Proceso de Venta</a></li>
+            <li class="nav-home nav-current" role="presentation"><a href="{% url 'registrar_subasta' %}">Subasta</a></li>
+            <li class="nav-about-us" role="presentation"><a href="{% url 'perfil_productor' %}">Perfil</a></li>
+            {% endif %}
+            {% if perms.core.add_solicitudventa %}<!-- Cliente Externo-->
+            <li class="nav-about-us" role="presentation"><a href="{% url 'listado_solicitud_venta' %}"> Solicitud Venta </a></li>
+            <li class="nav-about-us" role="presentation"><a href="{% url 'perfil_cliente_externo' %}">Perfil</a></li>
+            {% endif %}
+            {% if perms.core.view_saldo %}<!-- Cliente Interno-->
+            <li class="nav-about-us" role="presentation"><a href="{% url 'perfil_cliente_interno' %}">Perfil</a></li>
+            {% endif %}
+            {% if perms.core.view_transportista %}<!-- Transportista-->
+            <li class="nav-about-us" role="presentation"><a href="{% url 'listado_subasta' %}">Subastas disponibles</a></li>
+            <li class="nav-about-us" role="presentation"><a href="{% url 'perfil_transportista' %}">Perfil</a></li>
+            {% endif %}
+            
             {% if user.is_authenticated %}
             <li class="nav-about-us" role="presentation"><a href="#">Usuario: {{ user.username}}</a></li>
             <li class="nav-about-us" role="presentation"><a href="{% url 'logout' %}">Cerrar Sessión</a></li>
             {% else %}
             <li class="nav-article-example" role="presentation"><a href="{% url 'registrar' %}">Registro</a></li>
             <li class="nav-about-us" role="presentation"><a href="{% url 'login' %}">iniciar sesion</a></li>
-            {% endif %}
-            {% if perms.core.add_producto %}<!-- Productor-->
-            <li class="nav-about-us" role="presentation"><a href="{% url 'productos' %}">Productos</a></li>
-            <li class="nav-about-us" role="presentation"><a href="{% url 'listado_proceso_venta' %}">Proceso de Venta</a></li>
-            <li class="nav-home nav-current" role="presentation"><a href="{% url 'registrar_subasta' %}">Subasta</a></li>
-
-            {% endif %}
-            {% if perms.core.add_solicitudventa %}<!-- Cliente Externo-->
-            <li class="nav-about-us" role="presentation"><a href="{% url 'listado_solicitud_venta' %}"> Solicitud Venta </a></li>
-
-            {% endif %}
-             {% if perms.core.view_transportista %}<!-- Productor-->
-            <li class="nav-about-us" role="presentation"><a href="{% url 'listado_subasta' %}">Subastas disponibles</a></li>
-            <li class="nav-about-us" role="presentation"><a href="{% url 'home' %}">Mi cuenta</a></li>
             {% endif %}
         </ul>
 		

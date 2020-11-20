@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends 'core/base.html'%}
+
+{% load static %}
+
+{% block contenido %}
+
+<br><br><br><br>
+<body>
+    <div class="container">
+        <h2>Modificar Cliente Externo</h2>
+        {% load crispy_forms_tags %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form | crispy }}
+
+            <input type="submit" class="btn btn-primary" value="Modificar">
+    
+        
+    </div>
+    <div>
+    </div>
+
+</body>
+
+
+
+{% endblock %}

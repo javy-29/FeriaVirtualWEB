@@ -1,0 +1,73 @@
+{% extends 'core/base.html'%} {% load static %} {% block contenido %}
+<div class="container">
+  <br />
+  <br />
+  <br />
+  <br />
+  <br />
+  
+  <div class="span7">
+  {% for tra in transp %}
+    <h1>Mis Datos</h1>
+    <div class="form-sp-component">
+      <div class="form-sp-label">RUT</div>
+      <div class="form-sp-field">{{ tra.rut_transp }}</div>
+    </div>
+
+    <div class="form-sp-component">
+      <div class="form-sp-label">NOMBRE</div>
+      <div class="form-sp-field">{{ tra.nombre_transp }}</div>
+    </div>
+
+    <div class="form-sp-component">
+      <div class="form-sp-label">APELLIDO PATERNO</div>
+      <div class="form-sp-field">{{ tra.apellidop_transp }}</div>
+    </div>
+
+    <div class="form-sp-component">
+      <div class="form-sp-label">APELLIDO MATERNO</div>
+      <div class="form-sp-field">{{ tra.apellidom_transp }}</div>
+    </div>
+
+    <div class="form-sp-component">
+        <div class="form-sp-label">CORREO</div>
+        <div class="form-sp-field">{{ tra.correo_trasp }}</div>
+      </div>
+
+    <div class="form-sp-component">
+      <div class="form-sp-label">TELEFONO</div>
+      <div class="form-sp-field">{{ tra.telefono_transo }}</div>
+    </div>
+
+    <div class="form-sp-component">
+      <div class="form-sp-label">CAPACIDAD DE CARGA</div>
+      <div class="form-sp-field">{{ tra.capacidad_carga}}</div>
+    </div>
+
+    <div class="form-sp-component">
+      <div class="form-sp-label">REFRIGERACION</div>
+      <div class="form-sp-field">{{ tra.refrigeracion}}</div>
+    </div>
+
+    <div class="form-sp-component">
+      <div class="form-sp-label">CONTRASEÑA</div>
+      <div class="form-sp-field">{{ tra.pass_transp}}</div>
+    </div>
+
+    <div class="form-sp-component">
+      <div class="form-sp-label">NOBRE DE USUARIO</div>
+      <div class="form-sp-field">{{ tra.auth_user_username}}</div>
+    </div>
+    
+
+    <div class="form-sp-component">
+      <div class="form-sp-action-label">&nbsp;</div>
+      <div class="form-sp-field">
+        <div class="form-sp-field"><a href="{% url 'modificartransportista' id=tra.auth_user_username %}" class="btn btn-primary">Modificar datos de cliente</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+{% endblock %}

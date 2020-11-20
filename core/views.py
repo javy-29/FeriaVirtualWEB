@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from .models import *
@@ -69,59 +69,47 @@ def agregar_productor():
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc("PACK_MANT_PRODUCTOR.SP_AGREGAR_PRODUCTOR",
-                    [rut_produc, nom_produc, apellidop_produc, apellidom_produc, direccion_produc, ciudad_produc, telefono_produc, correo_produc, pass_produc, rol_id_rol,
+                    [rut_produc, nom_produc, apellidop_produc, apellidom_produc, direccion_produc, ciudad_produc, telefono_produc, correo_produc, pass_produc, rol_id_rol, auth_user_username,
                      salida])
     return salida.getvalue()
 
 
 # PERFIL PRODUCTOR
 #---------------------------------------------------------#
-def listar_productor():
+##Listar con el Package
+def listar_productor(request,usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     out_cur = django_cursor.connection.cursor()
 
-    cursor.callproc('PACK_MANT_PRODUCTOR.SP_LEER_PRODUCTOR', [out_cur])
+    cursor.callproc("PACK_MANT_PRODUCTOR.SP_LEER_PRODUCTOR",[out_cur,usuario])
     lista = []
     for fila in out_cur:
         lista.append(fila)
+
     return lista
 
-def perfilproductor(request):
-    data = {
-        'productor':listar_productor()
-    }
-
-    if request.method == 'POST':
-        RUT_PRODUC = request.POST.get('RUT_PRODUC')
-        NOM_PRODUC = request.POST.get('NOM_PRODUC')
-        APELLIDOP_PRODUC = request.POST.get('APELLIDOP_PRODUC')
-        APELLIDOM_PRODUC = request.POST.get('APELLIDOM_PRODUC')
-        DIRECCION_PRODUC = request.POST.get('DIRECCION_PRODUC')
-        CIUDAD_PRODUC = request.POST.get('CIUDAD_PRODUC')
-        TELEFONO_PRODUC = request.POST.get('TELEFONO_PRODUC')
-        CORREO_PRODUC = request.POST.get('CORREO_PRODUC')
-        PASS_PRODUC = request.POST.get('PASS_PRODUC')
-        data['productor'] = listar_productor()
-    
-    return render (request, 'perfil/perfilproductor.html', data)
 
 def perfil_productor(request):
-    productor = Productor.objects.get()
-    return render(request, 'perfil/perfilproductor.html', {"productor":productor})
+    user = request.user.username
+    produc = Productor.objects.filter(auth_user_username=user)
+    return render(request, 'perfil/perfilproductor.html', {'produc':produc})
 
-
-
-
-
-
-
-# mODIFICAR PRODUCTOR
+# MODIFICAR PRODUCTOR
 #---------------------------------------------------------#
+def modificar_productor(request, id):
+    produc = get_object_or_404(Productor, auth_user_username=id)
+    data = {
+        'form': ModificarProductor(instance=produc)
+    }   
 
-
-
-
+    if request.method == 'POST':
+        formulario = ModificarProductor(data=request.POST, instance=produc )
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="perfil_productor")
+        data["form"] = formulario
+    return render(request, 'modificar/modificarproductor.html',data)
 
 
 #====================================================================================================================#
@@ -169,8 +157,45 @@ def agregar_transportista():
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc("PACK_MANT_TRANSPORTISTA.SP_AGREGAR_TRANSPORTISTA",
                     [RUT_TRANSP, NOMBRE_TRANSP, APELLIDOP_TRANSP, APELLIDOM_TRANSP, direccion_produc, ciudad_produc, PATENTE_VEHICULO,
-                     CAPACIDAD_CARGA, REFRIGERACION, PASS_TRANSP, ROL_ID_ROL, salida])
+                     CAPACIDAD_CARGA, REFRIGERACION, PASS_TRANSP, ROL_ID_ROL,auth_user_username, salida])
     return salida.getvalue()
+
+# PERFIL Transportista
+#---------------------------------------------------------#
+##Listar con el Package
+def listar_transportista(request,usuario):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("PACK_MANT_TRANSPORTISTA.SP_LEER_TRANSPORTISTA",[out_cur,usuario])
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+
+
+def perfil_transportista(request):
+    user = request.user.username
+    transp = Transportista.objects.filter(auth_user_username=user)
+    return render(request, 'perfil/perfiltransportista.html', {'transp':transp})
+    
+# MODIFICAR TRANSPORTISTA
+#---------------------------------------------------------#
+def modificar_transportista(request, id):
+    transp = get_object_or_404(Transportista, auth_user_username=id)
+    data = {
+        'form': ModificarTransportista(instance=transp)
+    }   
+
+    if request.method == 'POST':
+        formulario = ModificarTransportista(data=request.POST, instance=transp )
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="perfil_transportista")
+        data["form"] = formulario
+    return render(request, 'modificar/modificartransportista.html',data)
 
 
 #====================================================================================================================#
@@ -220,8 +245,44 @@ def agregar_clienteInterno():
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc("PACK_MANT_CLIENTE_INTERNO.SP_AGREGAR_CLIENTE_INTERNO",
-                    [rut_cli_ex, nom_clien_in, apellidop_clien_in, apellidom_clientein, direccion_clien_in, ciudad_clien_in, correo_clien_in, numero_cliente_in, pass_cliente, rol_id_rol, salida])
+                    [rut_cli_ex, nom_clien_in, apellidop_clien_in, apellidom_clientein, direccion_clien_in, ciudad_clien_in, correo_clien_in, numero_cliente_in, pass_cliente, rol_id_rol,auth_user_username, salida])
     return salida.getvalue()
+# PERFIL Cliente Interno
+#---------------------------------------------------------#
+##Listar con el Package
+def listar_clienteinterno(request,usuario):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("PACK_MANT_CLIENTE_INTERNO.SP_LEER_CLIENTE_INTERNO",[out_cur,usuario])
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+
+
+def perfil_cliente_interno(request):
+    user = request.user.username
+    clienin = ClienteInterno.objects.filter(auth_user_username=user)
+    return render(request, 'perfil/perfilclienteinterno.html', {'clienin':clienin})
+
+# MODIFICAR CLIENTE INTERNO
+#---------------------------------------------------------#
+def modificar_cliente_interno(request, id):
+    clienin = get_object_or_404(ClienteInterno, auth_user_username=id)
+    data = {
+        'form': ModificarClienteInterno(instance=clienin)
+    }   
+
+    if request.method == 'POST':
+        formulario = ModificarClienteInterno(data=request.POST, instance=clienin )
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="perfil_cliente_interno")
+        data["form"] = formulario
+    return render(request, 'modificar/modificarclienteinterno.html',data)
 
 #====================================================================================================================#
 #--------------------------------CRUD de Cliente Externo-------------------------------------------------------------#
@@ -270,9 +331,46 @@ def agregar_clientexterno(request):
     cursor = django_cursor.connection.cursor()
     salida = cursor.var(cx_Oracle.NUMBER)
     cursor.callproc("PACK_MANT_CLIENTE_EXTERNO.SP_AGREGAR_CLIENTE_EXTERNO",
-                    [RUT_CLIENTE, NOM_CLIENTE, APELLIDOP_CLIENTE, APELLIDOM_CLIENTE, DIRECCION_RESIDENCIAL, CIUDAD_RESIDENCIAL, CORREO_ELECTRONICO, NUMERO_TELEFONICO, PASS_CLIENTE, ROL_ID_ROL,
+                    [RUT_CLIENTE, NOM_CLIENTE, APELLIDOP_CLIENTE, APELLIDOM_CLIENTE, DIRECCION_RESIDENCIAL, CIUDAD_RESIDENCIAL, CORREO_ELECTRONICO, NUMERO_TELEFONICO, PASS_CLIENTE, ROL_ID_ROL, auth_user_username, 
                      salida])
     return salida.getvalue()
+
+# PERFIL Cliente Externo
+#---------------------------------------------------------#
+##Listar con el Package
+def listar_clienteexterno(request,usuario):
+    django_cursor = connection.cursor()
+    cursor = django_cursor.connection.cursor()
+    out_cur = django_cursor.connection.cursor()
+
+    cursor.callproc("PACK_MANT_CLIENTE_EXTERNO.SP_LEER_CLIENTE_EXTERNO",[out_cur,usuario])
+    lista = []
+    for fila in out_cur:
+        lista.append(fila)
+
+    return lista
+
+
+def perfil_cliente_externo(request):
+    user = request.user.username
+    clienex = ClienteExterno.objects.filter(auth_user_username=user)
+    return render(request, 'perfil/perfilclienteexterno.html', {'clienex':clienex})
+
+# MODIFICAR CLIENTE EXTERNO
+#---------------------------------------------------------#
+def modificar_cliente_externo(request, id):
+    clienex = get_object_or_404(ClienteExterno, auth_user_username=id)
+    data = {
+        'form': ModificarClienteExterno(instance=clienex)
+    }   
+
+    if request.method == 'POST':
+        formulario = ModificarClienteExterno(data=request.POST, instance=clienex )
+        if formulario.is_valid():
+            formulario.save()
+            return redirect(to="perfil_cliente_externo")
+        data["form"] = formulario
+    return render(request, 'modificar/modificarclienteexterno.html',data)
 
 #====================================================================================================================#    
 #---------------------------------CRUD de Productos------------------------------------------------------------------#
@@ -282,42 +380,39 @@ def agregar_clientexterno(request):
 #-----------------------------#
 
 def registrar_producto(request):
+    rut = Productor.objects.get(auth_user_username=request.user)
     data = {
         'form': ProductoReg()
     }
     if request.method == 'POST': 
         salida = ProductoReg(request.POST)
         if salida.is_valid():
+            salida = salida.save(commit=False)
+            salida.productor_rut_produc = rut
             salida.save()
+
 
             return redirect(to='productos')
     return render(request, 'registration/registrarproducto.html', data)
 
-def IngresarProducto(ID_PROD,NOM_PROD,PRECIO_PROD,PESO_PROD, CALIDAD_PROD,PRODUCTOR_RUT_PRODUC):
-    django_cursor = connection.cursor()
-    cursor = django_cursor.connection.cursor()
-    salida = cursor.var(cx_Oracle.NUMBER)
-    cursor.callproc('PACK_MANT_PRODUCTO.SP_INGRESAR_PRODUCTO',[ID_PROD,NOM_PROD,PRECIO_PROD,PESO_PROD, CALIDAD_PROD,PRODUCTOR_RUT_PRODUC,out_cur])
 
-    return salida.getvalue()
 
 # Listar Productos
 #-----------------#
 
-def listar_producto():
+def listar_producto(request, usuario):
     django_cursor = connection.cursor()
     cursor = django_cursor.connection.cursor()
     out_cur = django_cursor.connection.cursor()
 
-    cursor.callproc('PACK_MANT_PRODUCTO.SP_LEER_PRODUCTO', [out_cur])
+    cursor.callproc("SP_LISTAR_PRODUCTOS",[out_cur,usuario])
     lista = []
     for fila in out_cur:
         lista.append(fila)
+
     return lista
 
-#############3### listar productos cliente externo###########################
-
-def productoex(request):  # Para navegacion de home
+def productoex(request):  
     data = {
         'productoex': listar_producto()
     }
@@ -333,18 +428,12 @@ def productoex(request):  # Para navegacion de home
     return render(request, 'core/productosclienteex.html')
 
 def productos(request):
-
+    
+    rut = Productor.objects.get(auth_user_username=request.user)
+    print(Producto.objects.filter(productor_rut_produc=rut))
     data = {
-        'productos': listar_producto()
+        'productos': Producto.objects.filter(productor_rut_produc=rut),
     }
-
-    if request.method == 'POST':
-        ID_PROD = request.POST.get('ID_PROD')
-        NOM_PROD = request.POST.get('NOM_PROD')
-        PRECIO_PROD = request.POST.get('PRECIO_PROD')
-        PESO_PROD = request.POST.get('PESO_PROD')
-        CALIDAD_PROD = request.POST.get('CALIDAD_PROD')
-        data['productos'] = listar_producto()
 
     return render(request, 'core/productos.html', data)
 

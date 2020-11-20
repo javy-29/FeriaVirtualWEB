@@ -452,7 +452,7 @@ body.nav-opened .site-wrapper {
 }
 /* ========================================================================== 4. General - The main styles for the the theme ========================================================================== */
 .content {
-	width:85%;
+	width:100%;
 	margin:0px auto;
 	background:#fff;
 	padding:40px 0px;
@@ -2323,4 +2323,25 @@ div#preloader {
 	display: inline-block;
   }
 
-  
+.form-sp-component {
+    display: block;
+    clear: both;
+    margin: 10px;
+}
+
+.form-sp-label {
+    width: 200px;
+    background: #efefef;
+    color: #999;
+    padding: 10px;
+    text-align: center;
+    float: left;
+    display: table-cell;
+}
+
+.form-sp-field {
+    display: table-cell;
+    color: #999;
+    text-align: left;
+    padding: 10px 10px 10px 20px;
+}

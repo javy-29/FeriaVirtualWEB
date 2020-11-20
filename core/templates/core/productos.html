@@ -27,14 +27,14 @@
                 </tr>
                 {% for p in productos %}
                 <tr>
-                        <td>{{ p.0 }}</td>
-                        <td>{{ p.1 }}</td>
-                        <td>{{ p.2 }}</td>
-                        <td>{{ p.3 }}</td>
-                        <td>{{ p.4 }}</td>
+                        <td>{{ p.id_prod }}</td>
+                        <td>{{ p.nom_prod }}</td>
+                        <td>{{ p.precio_prod }}</td>
+                        <td>{{ p.peso_prod }}</td>
+                        <td>{{ p.calidad_prod }}</td>
                         <td>
-                            <a href="{% url 'modificarproducto' p.0 %}"><input type="reset" value="Modificar" class="btn btn-info"></a>
-                            <a href="{% url 'eliminarproducto' p.0 %}"><input type="reset" value="Eliminar" class="btn btn-info"></a>
+                            <a href="{% url 'modificarproducto' id=p.id_prod %}"><input type="reset" value="Modificar" class="btn btn-info"></a>
+                            <a href="{% url 'eliminarproducto' id=p.id_prod %}"><input type="reset" value="Eliminar" class="btn btn-info"></a>
                         </td>
                         
                 </tr>

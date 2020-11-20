@@ -60,6 +60,8 @@ class ClienteExterno(models.Model):
     numero_telefonico = models.BigIntegerField(blank=True, null=True)
     pass_cliente = models.CharField(max_length=30, blank=True, null=True)
     rol_id_rol = models.ForeignKey('Rol', models.DO_NOTHING, db_column='rol_id_rol')
+    auth_user_username = models.CharField(max_length=150)
+
 
     class Meta:
         managed = False
@@ -82,6 +84,7 @@ class ClienteInterno(models.Model):
     correo_clien_in = models.CharField(max_length=40, blank=True, null=True)
     numero_cliente_in = models.BigIntegerField(blank=True, null=True)
     pass_cliente = models.CharField(max_length=30, blank=True, null=True)
+    auth_user_username = models.CharField(max_length=150)
 
     class Meta:
         managed = False
@@ -257,6 +260,7 @@ class Productor(models.Model):
     correo_produc = models.CharField(max_length=30, blank=True, null=True)
     pass_produc = models.CharField(max_length=30, blank=True, null=True)
     rol_id_rol = models.ForeignKey('Rol', models.DO_NOTHING, db_column='rol_id_rol')
+    auth_user_username = models.CharField(max_length=150)
 
     class Meta:
         managed = False
@@ -357,6 +361,7 @@ class Transportista(models.Model):
     refrigeracion = models.CharField(max_length=2, blank=True, null=True)
     pass_transp = models.CharField(max_length=30, blank=True, null=True)
     rol_id_rol = models.ForeignKey(Rol, models.DO_NOTHING, db_column='rol_id_rol')
+    auth_user_username = models.CharField(max_length=150)
 
     class Meta:
         managed = False

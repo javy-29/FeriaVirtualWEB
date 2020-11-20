@@ -7,64 +7,67 @@
   <br />
   
   <div class="span7">
-  {% for produ in produc %}
+  {% for cli in clienex %}
     <h1>Mis Datos</h1>
     <div class="form-sp-component">
       <div class="form-sp-label">RUT</div>
-      <div class="form-sp-field">{{ produ.rut_produc }}</div>
+      <div class="form-sp-field">{{ cli.rut_cliente }}</div>
     </div>
 
     <div class="form-sp-component">
       <div class="form-sp-label">NOMBRE</div>
-      <div class="form-sp-field">{{ produ.nom_produc }}</div>
+      <div class="form-sp-field">{{ cli.nom_cliente }}</div>
     </div>
 
     <div class="form-sp-component">
       <div class="form-sp-label">APELLIDO PATERNO</div>
-      <div class="form-sp-field">{{ produ.apellidop_produc }}</div>
+      <div class="form-sp-field">{{ cli.apellidop_cliente }}</div>
     </div>
 
     <div class="form-sp-component">
       <div class="form-sp-label">APELLIDO MATERNO</div>
-      <div class="form-sp-field">{{ produ.apellidom_produc }}</div>
+      <div class="form-sp-field">{{ cli.apellidom_cliente }}</div>
     </div>
 
     <div class="form-sp-component">
       <div class="form-sp-label">DIRECCION</div>
-      <div class="form-sp-field">{{ produ.direccion_produc }}</div>
+      <div class="form-sp-field">{{ cli.direccion_residencial }}</div>
     </div>
 
     <div class="form-sp-component">
       <div class="form-sp-label">CIUDAD</div>
-      <div class="form-sp-field">{{ produ.ciudad_produc}}</div>
-    </div>
-
-    <div class="form-sp-component">
-      <div class="form-sp-label">TELEFONO</div>
-      <div class="form-sp-field">{{ produ.telefono_produc}}</div>
+      <div class="form-sp-field">{{ cli.ciudad_residencial}}</div>
     </div>
 
     <div class="form-sp-component">
       <div class="form-sp-label">CORREO</div>
-      <div class="form-sp-field">{{ produ.correo_produc}}</div>
+      <div class="form-sp-field">{{ cli.correo_electronico}}</div>
+    </div>
+
+    <div class="form-sp-component">
+        <div class="form-sp-label">TELEFONO</div>
+        <div class="form-sp-field">{{ cli.numero_telefonico}}</div>
+    </div>
+
+    <div class="form-sp-component">
+        <div class="form-sp-label">CONTRASEÑA</div>
+        <div class="form-sp-field">{{ cli.pass_cliente}}</div>
     </div>
 
     <div class="form-sp-component">
       <div class="form-sp-label">NOBRE DE USUARIO</div>
-      <div class="form-sp-field">{{ produ.auth_user_username}}</div>
+      <div class="form-sp-field">{{ cli.auth_user_username}}</div>
     </div>
-    
+   
 
     <div class="form-sp-component">
       <div class="form-sp-action-label">&nbsp;</div>
       <div class="form-sp-field">
-        <div class="form-sp-field"><a href="{% url 'modificarproductor' id=produ.auth_user_username %}" class="btn btn-primary">Modificar datos de cliente</a></div>
+        <div class="form-sp-field"><a href="{% url 'modificarclienteexterno' id=cli.auth_user_username %}" class="btn btn-primary">Modificar datos de cliente</a></div>
       </div>
     </div>
-
-{% endfor %}
   </div>
 </div>
 
+{% endfor %}
 {% endblock %}
-
